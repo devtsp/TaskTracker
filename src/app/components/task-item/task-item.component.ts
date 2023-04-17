@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { Task } from 'src/app/Task';
@@ -15,5 +15,11 @@ export class TaskItemComponent {
     day: '',
     reminder: false,
   };
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+
   faTimes = faTimes;
+
+  onDelete(task: Task) {
+    this.onDeleteTask.emit(task);
+  }
 }
